@@ -34,7 +34,8 @@ namespace VisitHomeApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "VisitHomeApi", Version = "v1" });
             });
 
-            services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["VisitHome"]));
+            services.AddTransient<MySqlConnection>(_ =>
+             new MySqlConnection(Configuration["VisitHome"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
