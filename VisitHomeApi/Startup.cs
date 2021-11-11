@@ -13,7 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySqlConnector;
-using VisitHomeApi.Models;
+using VisitHomeApi.Data;
 
 namespace VisitHomeApi
 {
@@ -36,12 +36,22 @@ namespace VisitHomeApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "VisitHomeApi", Version = "v1" });
             });
 
-            services.AddTransient<MySqlConnection>(_ =>
-             new MySqlConnection(Configuration["VisitHome"]));
+            // services.AddTransient<MySqlConnection>(_ =>
+            //  new MySqlConnection(Configuration["VisitHome"]));
 
-            services.AddDbContext<visithomeContext>(
-                options => options.UseMySQL(Configuration["VisitHome"])
-            );
+            //services.AddDbContext<visithomeContext>(
+            //    options => options.UseMySQL("VisitHome")
+            //);
+
+            //services.AddDbContext<VisitHomeContext>(options =>
+            //options.UseSqlServer("VisitHome"));
+
+            //services.AddDbContext<visithomeContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("visithomeContext")));
+
+            services.AddDbContext<VisitHomeContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("VisitHome"))
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
