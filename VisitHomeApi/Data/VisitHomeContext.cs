@@ -8,9 +8,9 @@ namespace VisitHomeApi.Data
 {
     public partial class VisitHomeContext : DbContext
     {
-        public VisitHomeContext()
-        {
-        }
+        //public VisitHomeContext()
+        //{
+        //}
 
         public VisitHomeContext(DbContextOptions<VisitHomeContext> options)
             : base(options)
