@@ -12,23 +12,23 @@ namespace VisitHomeApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HomesController : ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly VisitHomeContext _context;
 
-        public HomesController(VisitHomeContext context)
+        public HomeController(VisitHomeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Homes
+        // GET: api/Home
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Home>>> GetHomes()
         {
             return await _context.Homes.ToListAsync();
         }
 
-        // GET: api/Homes/5
+        // GET: api/Home/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Home>> GetHome(int id)
         {
@@ -42,7 +42,7 @@ namespace VisitHomeApi.Controllers
             return home;
         }
 
-        // PUT: api/Homes/5
+        // PUT: api/Home/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHome(int id, Home home)
@@ -73,7 +73,7 @@ namespace VisitHomeApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Homes
+        // POST: api/Home
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Home>> PostHome(Home home)
@@ -84,7 +84,7 @@ namespace VisitHomeApi.Controllers
             return CreatedAtAction("GetHome", new { id = home.Id }, home);
         }
 
-        // DELETE: api/Homes/5
+        // DELETE: api/Home/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHome(int id)
         {

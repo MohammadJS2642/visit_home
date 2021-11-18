@@ -5,6 +5,11 @@ namespace VisitHomeApi.Models
 {
     public partial class Home
     {
+        // public Home()
+        // {
+        //     PicturesNavigation = new HashSet<Picture>();
+        // }
+
         public int Id { get; set; }
         public int? Area { get; set; }
         public int? NumberOfBedrooms { get; set; }
@@ -14,5 +19,8 @@ namespace VisitHomeApi.Models
         public string Address { get; set; }
         public int? Pictures { get; set; }
         public double? Price { get; set; }
+        public string Title { get; set; }
+
+        // public virtual ICollection<Picture> PicturesNavigation { get; set; }
     }
 }

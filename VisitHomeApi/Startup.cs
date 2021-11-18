@@ -52,6 +52,17 @@ namespace VisitHomeApi
             services.AddDbContext<VisitHomeContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("VisitHome"))
                 );
+
+            // services.AddCors();
+            services.AddCors(options =>
+            options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("https://localhost:5001")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                }
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,10 +81,20 @@ namespace VisitHomeApi
 
             app.UseAuthorization();
 
+            // app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }
