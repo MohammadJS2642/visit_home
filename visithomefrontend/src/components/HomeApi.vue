@@ -1,11 +1,13 @@
 <template>
-    <div>
+  <div id="home" class="container">
+    <div class="row">
       <picture>{{ picture }}</picture>
       <div>
-        <p>{{ title }}</p>
-        <p>{{ price }}</p>
+        <p class="col col-xs-4">{{ title }}</p>
+        <p class="col col-xs-4">{{ price }}</p>
       </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,6 +28,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 #home {
   border: 1px solid black;
-  height: 2vh;
 }
 </style>

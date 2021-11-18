@@ -1,20 +1,19 @@
 <template>
   <div class="home">
-    <!-- <div v-for="item in jsonData" v-bind:key="item.id">
-      <div>
-        <h4>{{ item.title }}</h4>
-        <p>{{ item.area }}</p>
+    <div class="container">
+      <div class="row row-cols-3">
+        <div v-for="item in jsonData" v-bind:key="item.id" class="col col-xs-4 mb-3">
+          <router-link
+            :to="{ name: 'HomeIndex', params: { id: item.id } }"
+          >
+            <HomeApi
+              :homeid="item.id"
+              v-bind:title="item.title"
+              :price="item.price"
+            ></HomeApi>
+          </router-link>
+        </div>
       </div>
-    </div> -->
-    <div v-for="item in jsonData" v-bind:key="item.id">
-      <router-link :to="{ name: 'HomeIndex', params: { id: item.id } }">
-        <HomeApi
-          :homeid="item.id"
-          v-bind:title="item.title"
-          :price="item.price"
-        ></HomeApi>
-        {{ item.id }}
-      </router-link>
     </div>
   </div>
 </template>
