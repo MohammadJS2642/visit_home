@@ -1,12 +1,37 @@
 <template>
-  <div id="home" class="container">
-    <div class="row">
-      <picture>{{ picture }}</picture>
+  <!-- container -->
+  <div id="home" class="">
+    <!-- <div class="row"> -->
+    <div class="col-12 col-md-4 mb-4">
+      <div class="card h-100">
+        <a href="shop-single.html">
+            <!-- src="@/assets/img/feature_prod_01.jpg" -->
+          <img
+            class="card-img-top"
+            alt="..."
+          />
+        </a>
+        <div class="card-body">
+          <ul class="list-unstyled d-flex justify-content-between">
+            <li class="text-muted text-right">تومان {{price}}</li>
+          </ul>
+          <a href="shop-single.html" class="h2 text-decoration-none text-dark"
+            >Gym Weight</a
+          >
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in
+            culpa qui officia deserunt.
+          </p>
+          <p class="text-muted">Reviews (24)</p>
+        </div>
+      </div>
+    </div>
+    <!-- <picture>{{ picture }}</picture>
       <div>
         <p class="col col-xs-4">{{ title }}</p>
         <p class="col col-xs-4">{{ price }}</p>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
   </div>
 </template>
 
@@ -26,7 +51,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-#home {
-  border: 1px solid black;
-}
+// #home {
+//   border: 1px solid black;
+// }
 </style>

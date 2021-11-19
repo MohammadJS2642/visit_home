@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <div class="container">
+    <div class="container py-5">
       <div class="row row-cols-3">
-        <div v-for="item in jsonData" v-bind:key="item.id" class="col col-xs-4 mb-3">
+        <div v-for="item in jsonData" v-bind:key="item.id" class="">
           <router-link
             :to="{ name: 'HomeIndex', params: { id: item.id } }"
           >
