@@ -49,7 +49,7 @@ namespace VisitHomeApi.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [EnableCors]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHome(int id, Home home)
+        public async Task<IActionResult> PutHome(Guid id, Home home)
         {
             if (id != home.Id)
             {
@@ -106,7 +106,7 @@ namespace VisitHomeApi.Controllers
             return NoContent();
         }
 
-        private bool HomeExists(int id)
+        private bool HomeExists(Guid id)
         {
             return _context.Homes.Any(e => e.Id == id);
         }

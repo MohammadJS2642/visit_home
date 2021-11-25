@@ -5,7 +5,6 @@ namespace VisitHomeApi.Models
 {
     public partial class Home
     {
-        public int Id { get; set; }
         public int? Area { get; set; }
         public int? NumberOfBedrooms { get; set; }
         public bool? Parking { get; set; }
@@ -16,5 +15,6 @@ namespace VisitHomeApi.Models
         public double? Price { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public Guid Id { get; set; }
     }
 }
