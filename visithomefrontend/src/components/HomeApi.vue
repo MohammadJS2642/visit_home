@@ -8,7 +8,7 @@
           <!-- src="@/assets/img/feature_prod_01.jpg" -->
           <img
             class="card-img-top"
-            src="/assets/img/feature_prod_01.jpg"
+            src="../assets/no_photo.png"
             alt="..."
           />
         </a>
@@ -43,7 +43,7 @@ export default defineComponent({
   data() {
     return {
       homeData: [],
-      tst: "feature_prod_01.jpg",
+      // tst: require('../'),
     };
   },
   props: ["homeid", "title", "price", "picture"],
