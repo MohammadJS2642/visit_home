@@ -35,25 +35,25 @@
           <span asp-validation-for="Parking" class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
-          <label asp-for="Warehouse" class="control-label col"></label>
-          <select v-model="Warehouse" class="form-control col">
+          <label for="Warehouse" class="control-label col">انباری</label>
+          <select v-model="Warehouse" id="Warehouse" class="form-control col">
             <option></option>
             <option value="true">دارد</option>
             <option value="false">ندارد</option>
           </select>
           <span asp-validation-for="Warehouse" class="text-danger col"
-            >انباری</span
+            ></span
           >
         </div>
         <div class="row form-group pb-3">
-          <label asp-for="Elevator" class="control-label col"></label>
+          <label asp-for="Elevator" class="control-label col">آسانسور</label>
           <select asp-for="Elevator" class="form-control col">
             <option></option>
             <option value="true">دارد</option>
             <option value="false">ندارد</option>
           </select>
           <span asp-validation-for="Elevator" class="text-danger col"
-            >آسانسور</span
+            ></span
           >
         </div>
         <div class="row form-group pb-3">

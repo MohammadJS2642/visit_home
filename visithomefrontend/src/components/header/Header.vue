@@ -41,18 +41,18 @@
           <ul class="nav navbar-nav d-flex justify-content-center mx-lg-auto">
             <li class="nav-item">
               <!-- <a class="nav-link" href="index.html">Home</a> -->
-              <router-link to="/" class="nav-link">Home</router-link>
+              <router-link to="/" class="nav-link">صفحه اصلی</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/create" class="nav-link">ایجاد</router-link>
             </li>
             <li class="nav-item">
               <!-- <a class="nav-link" href="about.html">About</a> -->
-              <router-link to="/about" class="nav-link">About</router-link>
+              <router-link to="/about" class="nav-link">درباره ما</router-link>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link" href="shop.html">Shop</a>
             </li> -->
-            <li class="nav-item">
-              <router-link to="/create" class="nav-link">Create</router-link>
-            </li>
           </ul>
         </div>
         <div class="navbar align-self-center d-flex">
@@ -77,7 +77,7 @@
           >
             <i class="fa fa-fw fa-search text-dark mr-2"></i>
           </a>
-          <a class="nav-icon position-relative text-decoration-none" href="#">
+          <!-- <a class="nav-icon position-relative text-decoration-none" href="#">
             <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
             <span
               class="
@@ -92,8 +92,8 @@
               "
               >7</span
             >
-          </a>
-          <a class="nav-icon position-relative text-decoration-none" href="#">
+          </a> -->
+          <!-- <a class="nav-icon position-relative text-decoration-none" href="#">
             <i class="fa fa-fw fa-user text-dark mr-3"></i>
             <span
               class="
@@ -107,8 +107,8 @@
                 text-dark
               "
               >+99</span
-            >
-          </a>
+            > 
+          </a>-->
         </div>
       </div>
     </div>
