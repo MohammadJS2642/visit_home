@@ -16,7 +16,12 @@
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Price" class="control-label col">قیمت</label>
-          <input required v-model="Price" class="form-control col" />
+          <input
+            type="number"
+            required
+            v-model="Price"
+            class="form-control col"
+          />
           <label for="Price" class="control-label col">تومان</label>
           <span asp-validation-for="Price" class="text-danger col"></span>
         </div>
@@ -56,13 +61,13 @@
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Floor" class="control-label col">طبقه</label>
-          <input v-model="Floor" class="form-control col" />
+          <input type="number" v-model="Floor" class="form-control col" />
           <label asp-for="Floor" class="control-label col"></label>
           <span asp-validation-for="Floor" class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Floor" class="control-label col">مساحت</label>
-          <input v-model="Floor" class="form-control col" />
+          <input type="number" v-model="Area" class="form-control col" />
           <label asp-for="Floor" class="control-label col"></label>
           <span asp-validation-for="Floor" class="text-danger col"></span>
         </div>
@@ -70,13 +75,17 @@
           <label asp-for="Floor" class="control-label col"
             >تعداد اتاق خواب</label
           >
-          <input v-model="Floor" class="form-control col" />
+          <input
+            type="number"
+            v-model="NumberOfBedrooms"
+            class="form-control col"
+          />
           <label asp-for="Floor" class="control-label col"></label>
           <span asp-validation-for="Floor" class="text-danger col"></span>
         </div>
         <div class="form-group pb-3">
           <label asp-for="Floor" class="control-label">آدرس</label>
-          <input v-model="Floor" class="form-control" />
+          <input v-model="Address" class="form-control" />
           <label asp-for="Floor" class="control-label"></label>
           <span asp-validation-for="Floor" class="text-danger"></span>
         </div>
