@@ -10,12 +10,14 @@
         </div>
         <div class="row form-group pb-3">
           <label for="Title" class="control-label col">عنوان</label>
-          <input v-model="Title" id="Title" class="form-control col" />
+          <input required v-model="Title" id="Title" class="form-control col" />
+          <label for="Title" class="control-label col"></label>
           <span class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Price" class="control-label col">قیمت</label>
-          <input v-model="Price" class="form-control col" />
+          <input required v-model="Price" class="form-control col" />
+          <label for="Price" class="control-label col">تومان</label>
           <span asp-validation-for="Price" class="text-danger col"></span>
         </div>
         <!-- <div class="row form-group pb-3">
@@ -28,37 +30,34 @@
         <div class="row form-group pb-3">
           <label asp-for="Parking" class="control-label col">پارکینگ</label>
           <select v-model="Parking" class="form-control col">
-            <option></option>
-            <option value="true">دارد</option>
             <option value="false">ندارد</option>
+            <option value="true">دارد</option>
           </select>
+          <label asp-for="Parking" class="control-label col"></label>
           <span asp-validation-for="Parking" class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
           <label for="Warehouse" class="control-label col">انباری</label>
           <select v-model="Warehouse" id="Warehouse" class="form-control col">
-            <option></option>
-            <option value="true">دارد</option>
             <option value="false">ندارد</option>
+            <option value="true">دارد</option>
           </select>
-          <span asp-validation-for="Warehouse" class="text-danger col"
-            ></span
-          >
+          <label asp-for="Parking" class="control-label col"></label>
+          <span asp-validation-for="Warehouse" class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Elevator" class="control-label col">آسانسور</label>
           <select asp-for="Elevator" class="form-control col">
-            <option></option>
-            <option value="true">دارد</option>
             <option value="false">ندارد</option>
+            <option value="true">دارد</option>
           </select>
-          <span asp-validation-for="Elevator" class="text-danger col"
-            ></span
-          >
+          <label asp-for="Floor" class="control-label col"></label>
+          <span asp-validation-for="Elevator" class="text-danger col"></span>
         </div>
         <div class="row form-group pb-3">
           <label asp-for="Floor" class="control-label col">طبقه</label>
           <input v-model="Floor" class="form-control col" />
+          <label asp-for="Floor" class="control-label col"></label>
           <span asp-validation-for="Floor" class="text-danger col"></span>
         </div>
         <!-- <div class="row form-group pb-3">
@@ -154,7 +153,7 @@ export default defineComponent({
         Title: this.Title,
         Description: this.Description,
       });
-      
+
       console.log(uuid.v1());
       // console.log(uuid.v1.length);
       // console.log(uuid.v1.arguments);
