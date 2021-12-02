@@ -33,7 +33,7 @@ namespace VisitHomeApi.Controllers
         // GET: api/Home/5
         [EnableCors]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Home>> GetHome(int id)
+        public async Task<ActionResult<Home>> GetHome(Guid id)
         {
             var home = await _context.Homes.FindAsync(id);
 
@@ -92,7 +92,7 @@ namespace VisitHomeApi.Controllers
         // DELETE: api/Home/5
         [EnableCors]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHome(int id)
+        public async Task<IActionResult> DeleteHome(Guid id)
         {
             var home = await _context.Homes.FindAsync(id);
             if (home == null)
