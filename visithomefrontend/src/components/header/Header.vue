@@ -38,7 +38,7 @@
         id="templatemo_main_nav"
       >
         <div class="flex-fill">
-          <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+          <ul class="nav navbar-nav d-flex justify-content-center mx-lg-auto">
             <li class="nav-item">
               <!-- <a class="nav-link" href="index.html">Home</a> -->
               <router-link to="/" class="nav-link">Home</router-link>
@@ -51,7 +51,7 @@
               <a class="nav-link" href="shop.html">Shop</a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <router-link to="/create" class="nav-link">Create</router-link>
             </li>
           </ul>
         </div>
