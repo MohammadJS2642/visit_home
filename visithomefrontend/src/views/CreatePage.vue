@@ -60,6 +60,26 @@
           <label asp-for="Floor" class="control-label col"></label>
           <span asp-validation-for="Floor" class="text-danger col"></span>
         </div>
+        <div class="row form-group pb-3">
+          <label asp-for="Floor" class="control-label col">مساحت</label>
+          <input v-model="Floor" class="form-control col" />
+          <label asp-for="Floor" class="control-label col"></label>
+          <span asp-validation-for="Floor" class="text-danger col"></span>
+        </div>
+        <div class="row form-group pb-3">
+          <label asp-for="Floor" class="control-label col"
+            >تعداد اتاق خواب</label
+          >
+          <input v-model="Floor" class="form-control col" />
+          <label asp-for="Floor" class="control-label col"></label>
+          <span asp-validation-for="Floor" class="text-danger col"></span>
+        </div>
+        <div class="form-group pb-3">
+          <label asp-for="Floor" class="control-label">آدرس</label>
+          <input v-model="Floor" class="form-control" />
+          <label asp-for="Floor" class="control-label"></label>
+          <span asp-validation-for="Floor" class="text-danger"></span>
+        </div>
         <!-- <div class="row form-group pb-3">
             <label asp-for="YearofConstruction" class="control-label col"></label>
             <input name="year" class="form-control col" />
@@ -94,12 +114,15 @@
           <span asp-validation-for="ImageName" class="text-danger col"></span>
         </div>
         <div class="form-group pt-3 row">
-          <input
-            type="submit"
+          <a
+            v-if="Title != ''"
+            href="/"
             v-on:click="addData"
-            value="ثبت"
             class="btn btn-primary col"
-          />
+          >
+            ثبت
+          </a>
+          <a v-else class="btn btn-primary col disabled"> ثبت </a>
         </div>
         <!-- </form> -->
       </div>
@@ -116,7 +139,6 @@ import { uuid } from "vue-uuid";
 
 export default defineComponent({
   name: "CreatePage",
-
   // mounted() {
   //   fetch("https://localhost:5001/api/Home/", {
   //     method: "POST",
@@ -140,26 +162,26 @@ export default defineComponent({
     };
   },
   methods: {
+    myAlert() {
+      alert("لطفا تمامی اطلاعات را بدرستی وارد نمایید");
+    },
     async addData() {
-      let result = await axio.post("https://localhost:5001/api/Home/", {
-        Id: uuid.v4(),
-        Area: "",
-        NumberOfBedrooms: "",
-        Parking: this.Parking,
-        Warehouse: this.Warehouse,
-        Floor: this.Floor,
-        Address: "",
-        Price: this.Price,
-        Title: this.Title,
-        Description: this.Description,
-      });
-
-      console.log(uuid.v1());
-      // console.log(uuid.v1.length);
-      // console.log(uuid.v1.arguments);
-      // console.log(uuid.v1.caller);
-      // console.log(uuid.v1.prototype);
-      // console.log(uuid.v1.name);
+      if (this.Title == "") {
+        alert("لطفا تمامی اطلاعات را بدرستی وارد نمایید");
+      } else {
+        let result = await axio.post("https://localhost:5001/api/Home/", {
+          Id: uuid.v4(),
+          Area: this.Area,
+          NumberOfBedrooms: this.NumberOfBedrooms,
+          Parking: this.Parking,
+          Warehouse: this.Warehouse,
+          Floor: this.Floor,
+          Address: this.Address,
+          Price: this.Price,
+          Title: this.Title,
+          Description: this.Description,
+        });
+      }
     },
   },
 });
