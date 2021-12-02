@@ -1,22 +1,34 @@
 <template>
   <!-- Open Content -->
-  <section class="bg-light">
+  <h1 v-if="statusCode == 404">صفحه یافت نشد</h1>
+  <section dir="ltr" class="bg-light" v-else>
     <div class="container pb-5">
       <div class="row">
         <div class="col-lg-5 mt-5">
-          <div class="card mb-3">
-            <img
-              class="card-img img-fluid"
-              alt="Card image cap"
-              id="product-detail"
-            />
+          <div
+            class="carousel-inner product-links-wap"
+            role="listbox"
+            v-if="homeData.pictures == null || homeData.pictures == 0"
+          >
+            <div class="carousel-item active">
+              <div class="row">
+                <a href="#">
+                  <img
+                    src="../assets/no_photo.png"
+                    class="card-img img-fluid"
+                    alt=""
+                  />
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="row">
+
+          <div class="row" v-else>
             <!--Start Controls-->
             <div class="col-1 align-self-center">
               <a href="#multi-item-example" role="button" data-bs-slide="prev">
                 <i class="text-dark fas fa-chevron-left"></i>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only">قبلی</span>
               </a>
             </div>
             <!--End Controls-->
@@ -31,28 +43,20 @@
                 <!--First slide-->
                 <div class="carousel-item active">
                   <div class="row">
-                    <div class="col-4">
+                    <!-- <div
+                      v-if="homeData.pictures == null || homeData.pictures == 0"
+                    >
                       <a href="#">
                         <img
+                          src="../assets/no_photo.png"
                           class="card-img img-fluid"
-                          alt="Product Image 1"
+                          alt=""
                         />
                       </a>
-                    </div>
+                    </div> -->
                     <div class="col-4">
                       <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 2"
-                        />
-                      </a>
-                    </div>
-                    <div class="col-4">
-                      <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 3"
-                        />
+                        <img class="card-img img-fluid" alt="Product Image 1" />
                       </a>
                     </div>
                   </div>
@@ -64,26 +68,7 @@
                   <div class="row">
                     <div class="col-4">
                       <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 4"
-                        />
-                      </a>
-                    </div>
-                    <div class="col-4">
-                      <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 5"
-                        />
-                      </a>
-                    </div>
-                    <div class="col-4">
-                      <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 6"
-                        />
+                        <img class="card-img img-fluid" alt="Product Image 4" />
                       </a>
                     </div>
                   </div>
@@ -95,27 +80,18 @@
                   <div class="row">
                     <div class="col-4">
                       <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 7"
-                        />
-                          <!-- src="../assets/img/product_single_07.jpg" -->
+                        <img class="card-img img-fluid" alt="Product Image 7" />
+                        <!-- src="../assets/img/product_single_07.jpg" -->
                       </a>
                     </div>
                     <div class="col-4">
                       <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 8"
-                        />
+                        <img class="card-img img-fluid" alt="Product Image 8" />
                       </a>
                     </div>
                     <div class="col-4">
                       <a href="#">
-                        <img
-                          class="card-img img-fluid"
-                          alt="Product Image 9"
-                        />
+                        <img class="card-img img-fluid" alt="Product Image 9" />
                       </a>
                     </div>
                   </div>
@@ -129,7 +105,7 @@
             <div class="col-1 align-self-center">
               <a href="#multi-item-example" role="button" data-bs-slide="next">
                 <i class="text-dark fas fa-chevron-right"></i>
-                <span class="sr-only">Next</span>
+                <span class="sr-only">بعدی</span>
               </a>
             </div>
             <!--End Controls-->
@@ -139,35 +115,56 @@
         <div class="col-lg-7 mt-5">
           <div class="card">
             <div class="card-body">
-              <h1 class="h2">Active Wear</h1>
-              <p class="h3 py-2">$25.00</p>
-              <p class="py-2">
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-warning"></i>
-                <i class="fa fa-star text-secondary"></i>
-                <span class="list-inline-item text-dark"
-                  >Rating 4.8 | 36 Comments</span
-                >
+              <h1 class="h2">{{ homeData.title }}</h1>
+              <p class="h3 py-2">
+                <span>قیمت : </span>
+                <span v-if="homeData.price == '0'">تعیین نشده است</span>
+                <span v-else>{{ homeData.price }}</span>
+                <span> تومان</span>
               </p>
-              <ul class="list-inline">
-                <li class="list-inline-item">
-                  <h6>Brand:</h6>
+              <p class="py-2" dir="rtl">
+                <!-- <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-secondary"></i> -->
+                <span
+                  >آدرس :
+                  <span
+                    class="list-inline-item text-dark"
+                    v-if="homeData.address == ''"
+                  >
+                    آدرسی تعیین نگردیده است
+                  </span>
+                  <span class="list-inline-item text-dark">
+                    {{ homeData.address }}
+                  </span>
+                </span>
+              </p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <h6>
+                    <span>پارکینگ : </span>
+                    <span v-if="homeData.parking == 'true'">دارد</span>
+                    <span v-else>ندارد</span>
+                  </h6>
                 </li>
-                <li class="list-inline-item">
-                  <p class="text-muted"><strong>Easy Wear</strong></p>
+                <li class="list-group-item">
+                  <h6>
+                    انباری :
+                    <span v-if="homeData.warehouse == 'true'">دارد</span>
+                    <span v-else>ندارد</span>
+                  </h6>
                 </li>
               </ul>
 
-              <h6>Description:</h6>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod temp incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse. Donec condimentum elementum convallis. Nunc
-                sed orci a diam ultrices aliquet interdum quis nulla.
-              </p>
-              <ul class="list-inline">
+              <hr />
+
+              <h6 class="text" dir="rtl">توضیحات :</h6>
+              <div>
+                {{ homeData.description }}
+              </div>
+              <!-- <ul class="list-inline">
                 <li class="list-inline-item">
                   <h6>Avaliable Color :</h6>
                 </li>
@@ -185,7 +182,7 @@
                 <li>Ut enim ad minim</li>
                 <li>Dolore magna aliqua</li>
                 <li>Excepteur sint</li>
-              </ul>
+              </ul> -->
 
               <!-- <form action="" method="GET">
                 <input type="hidden" name="product-title" value="Activewear" />
@@ -261,6 +258,32 @@
                   </div>
                 </div>
               </form> -->
+
+              <br />
+              <br />
+              <div class="row">
+                <a
+                  href="/"
+                  v-on:click="deleteButton"
+                  class="col btn btn-danger ms-2 pe-2 ps-2"
+                >
+                  حذف
+                </a>
+
+                <router-link
+                  class="col btn btn-secondary ms-2 pe-2 ps-2"
+                  :to="{ name: 'Home' }"
+                >
+                  ویرایش
+                </router-link>
+
+                <router-link
+                  class="col btn btn-primary ms-4 me-2 pe-5 ps-5"
+                  :to="{ name: 'Home' }"
+                >
+                  بازگشت
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -268,33 +291,29 @@
     </div>
   </section>
   <!-- Close Content -->
-  <!-- <div>
-    {{ homeData.title }}
-    {{ homeData.price }}
-    {{ homeData.address }}
-    {{ homeData.parking }}
-    {{ homeData.pictures }}
-    {{ homeData.floor }}
-    {{ homeData.warehouse }}
-    {{ homeData.numberOfBedrooms }}
-    {{ homeData.area }}
-  </div> -->
 </template>
 
 <script lang='ts'>
 import { defineComponent } from "vue";
+import HomeApiVue from "../components/HomeApi.vue";
+import axio from "axios";
 
 export default defineComponent({
   name: "HomeIndex",
   mounted() {
     fetch("https://localhost:5001/api/Home/" + this.id)
       .then((e) => e.json())
-      .then((data) => (this.homeData = data));
+      .then((data) => (this.homeData = data))
+      .then((data) => {
+        this.homeId = data.id;
+        this.statusCode = data.status;
+      });
   },
   data() {
     return {
-      // url_id: this.$route.params.id,
       homeData: [],
+      homeId: "",
+      statusCode: 0,
     };
   },
   props: ["id"],
@@ -310,6 +329,13 @@ export default defineComponent({
   //   "area",
   // ],
   // setup() {},
+  methods: {
+    async deleteButton(e: any) {
+      let result = await axio.delete(
+        "https://localhost:5001/api/Home/" + this.homeId
+      );
+    },
+  },
 });
 </script>
 
