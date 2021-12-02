@@ -5,14 +5,14 @@ namespace VisitHomeApi.Models
 {
     public partial class Home
     {
-        public int? Area { get; set; }
-        public int? NumberOfBedrooms { get; set; }
-        public bool? Parking { get; set; }
-        public bool? Warehouse { get; set; }
-        public int? Floor { get; set; }
+        public string Area { get; set; }
+        public string NumberOfBedrooms { get; set; }
+        public string Parking { get; set; }
+        public string Warehouse { get; set; }
+        public string Floor { get; set; }
         public string Address { get; set; }
         public int? Pictures { get; set; }
-        public double? Price { get; set; }
+        public string Price { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public Guid Id { get; set; }

@@ -24,7 +24,7 @@ namespace VisitHomeApi.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-// #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost;Database=VisitHome;Trusted_Connection=True;");
             }
         }
@@ -39,14 +39,28 @@ namespace VisitHomeApi.Data
 
                 entity.Property(e => e.Address).HasMaxLength(1000);
 
+                entity.Property(e => e.Area).HasMaxLength(50);
+
                 entity.Property(e => e.Description).HasMaxLength(1000);
 
+                entity.Property(e => e.Floor).HasMaxLength(50);
+
+                entity.Property(e => e.NumberOfBedrooms).HasMaxLength(50);
+
+                entity.Property(e => e.Parking).HasMaxLength(50);
+
+                entity.Property(e => e.Price).HasMaxLength(50);
+
                 entity.Property(e => e.Title).HasMaxLength(300);
+
+                entity.Property(e => e.Warehouse).HasMaxLength(50);
             });
 
             modelBuilder.Entity<HomePicture>(entity =>
             {
                 entity.HasNoKey();
+
+                entity.HasIndex(e => e.HomeId, "IX_HomePictures_HomeId");
 
                 entity.HasOne(d => d.Home)
                     .WithMany()

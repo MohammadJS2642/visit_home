@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=localhost;Database=VisitHome;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data -o Models -f
