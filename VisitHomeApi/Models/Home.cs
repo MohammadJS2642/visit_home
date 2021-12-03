@@ -11,10 +11,10 @@ namespace VisitHomeApi.Models
         public string Warehouse { get; set; }
         public string Floor { get; set; }
         public string Address { get; set; }
-        public int? Pictures { get; set; }
         public string Price { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public Guid Id { get; set; }
+        public string PicturesName { get; set; }
     }
 }

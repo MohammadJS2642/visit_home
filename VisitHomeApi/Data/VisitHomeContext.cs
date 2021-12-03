@@ -18,7 +18,6 @@ namespace VisitHomeApi.Data
         }
 
         public virtual DbSet<Home> Homes { get; set; }
-        public virtual DbSet<HomePicture> HomePictures { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,18 +53,6 @@ namespace VisitHomeApi.Data
                 entity.Property(e => e.Title).HasMaxLength(300);
 
                 entity.Property(e => e.Warehouse).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<HomePicture>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.HasIndex(e => e.HomeId, "IX_HomePictures_HomeId");
-
-                entity.HasOne(d => d.Home)
-                    .WithMany()
-                    .HasForeignKey(d => d.HomeId)
-                    .HasConstraintName("FK__HomePictu__HomeI__4CA06362");
             });
 
             OnModelCreatingPartial(modelBuilder);
