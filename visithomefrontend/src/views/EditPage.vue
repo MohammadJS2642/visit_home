@@ -25,13 +25,6 @@
           <label for="Price" class="control-label col">تومان</label>
           <span asp-validation-for="Price" class="text-danger col"></span>
         </div>
-        <!-- <div class="row form-group pb-3">
-            <label asp-for="Zone" class="control-label col"></label>
-            <select asp-for="Zone" class="form-control col">
-              <option></option>
-            </select>
-            <span asp-validation-for="Zone" class="text-danger col"></span>
-          </div> -->
         <div class="row form-group pb-3">
           <label asp-for="Parking" class="control-label col">پارکینگ</label>
           <select v-model="Parking" class="form-control col">
@@ -89,15 +82,6 @@
           <label asp-for="Floor" class="control-label"></label>
           <span asp-validation-for="Floor" class="text-danger"></span>
         </div>
-        <!-- <div class="row form-group pb-3">
-            <label asp-for="YearofConstruction" class="control-label col"></label>
-            <input name="year" class="form-control col" />
-            <span
-              asp-validation-for="YearofConstruction"
-              class="text-danger col"
-            </span> -->
-        <!-- <span class="text-danger col">@ViewBag.ErrorMessageYear</span> -->
-        <!-- </div> -->
         <div class="row form-group pb-3">
           <label asp-for="Description" class="control-label"></label>
           <textarea
@@ -124,15 +108,22 @@
           <span asp-validation-for="ImageName" class="text-danger col"></span>
         </div>
         <div class="form-group pt-3 row">
-          <a
+          <!-- <a
             v-if="Title != ''"
-            href="/"
             v-on:click="addData"
             class="btn btn-primary col"
+            v-bind:href="{ href }"
           >
             ثبت
           </a>
-          <a v-else class="btn btn-primary col disabled"> ثبت </a>
+          <a v-else class="btn btn-primary col disabled"> ثبت </a> -->
+          <router-link
+            class="btn btn-primary col"
+            v-on:click="addData"
+            :to="{ path: '/homeindex/' + Id }"
+          >
+            ویرایش
+          </router-link>
         </div>
         <!-- </form> -->
       </div>
@@ -148,21 +139,31 @@ import axio from "axios";
 import { uuid } from "vue-uuid";
 
 export default defineComponent({
-  name: "CreatePage",
-  // mounted() {
-  //   fetch("https://localhost:5001/api/Home/", {
-  //     method: "POST",
-  //     body: JSON.stringify(""),
-  //   })
-  //     .then((e) => e.json())
-  //     .then((data) => (this.homeData = data));
-  // },
+  name: "EditPage",
+  mounted() {
+    axio.get("https://localhost:5001/api/Home/" + this.id).then((e) => {
+      this.Id = e.data.id;
+      this.Area = e.data.area;
+      this.NumberOfBedrooms = e.data.numberOfBedrooms;
+      this.Parking = e.data.parking;
+      this.Warehouse = e.data.warehouse;
+      this.Floor = e.data.floor;
+      this.Address = e.data.address;
+      this.Price = e.data.price;
+      this.Title = e.data.title;
+      this.Description = e.data.description;
+      this.pictures = e.data.pictures;
+      this.selectedFile = e.data.selectedfile;
+      this.href = "/homeindex/" + e.data.id;
+    });
+  },
   data() {
     return {
+      Id: "",
       Area: "",
       NumberOfBedrooms: "",
-      Parking: "false",
-      Warehouse: "false",
+      Parking: "",
+      Warehouse: "",
       Floor: "",
       Address: "",
       Price: "",
@@ -170,9 +171,11 @@ export default defineComponent({
       Description: "",
       pictures: 0,
       selectedFile: null,
+      href: "",
       homeData: [],
     };
   },
+  props: ["id"],
   methods: {
     onFileSelected(e: any) {
       console.log(e.target.files);
@@ -183,24 +186,38 @@ export default defineComponent({
       alert("لطفا تمامی اطلاعات را بدرستی وارد نمایید");
     },
     async addData() {
+      // console.log(this.Id);
+      // console.log(this.Area);
+      // console.log(this.NumberOfBedrooms);
+      // console.log(this.Parking);
+      // console.log(this.Warehouse);
+      // console.log(this.Floor);
+      // console.log(this.Address);
+      // console.log(this.Price);
+      // console.log(this.Title);
+      // console.log(this.Description);
+      // console.log(this.pictures);
+      // console.log(this.selectedFile);
       if (this.Title == "") {
         alert("لطفا تمامی اطلاعات را بدرستی وارد نمایید");
       } else {
-        let result = await axio.post("https://localhost:5001/api/Home/", {
-          Id: uuid.v4(),
-          Area: this.Area,
-          NumberOfBedrooms: this.NumberOfBedrooms,
-          Parking: this.Parking,
-          Warehouse: this.Warehouse,
-          Floor: this.Floor,
-          Address: this.Address,
-          Price: this.Price,
-          Title: this.Title,
-          Description: this.Description,
-          PicturesName: this.selectedFile,
-        });
-        //   .then((e) => console.log(e));
-        // console.log(this.selectedFile);
+        let url = `https://localhost:5001/api/Home/${this.Id}/`;
+        console.log(url);
+        let result = await axio
+          .put(url, {
+            Id: this.Id,
+            Area: this.Area.toString(),
+            NumberOfBedrooms: this.NumberOfBedrooms.toString(),
+            Parking: this.Parking,
+            Warehouse: this.Warehouse,
+            Floor: this.Floor.toString(),
+            Address: this.Address,
+            Price: this.Price.toString(),
+            Title: this.Title,
+            Description: this.Description,
+            PicturesName: this.selectedFile,
+          })
+          .then((e) => console.log(e));
       }
     },
   },

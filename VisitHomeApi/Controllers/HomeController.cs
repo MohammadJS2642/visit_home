@@ -49,6 +49,7 @@ namespace VisitHomeApi.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [EnableCors]
         [HttpPut("{id}")]
+        // [Route("/edit/{id}")]
         public async Task<IActionResult> PutHome(Guid id, Home home)
         {
             if (id != home.Id)

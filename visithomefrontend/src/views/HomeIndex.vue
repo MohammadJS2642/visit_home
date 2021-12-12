@@ -272,8 +272,10 @@
 
                 <router-link
                   class="col btn btn-secondary ms-2 pe-2 ps-2"
-                  :to="{ name: 'Home' }"
+                  :to="{ path: '/edit/' + homeId }"
                 >
+                  <!-- :to="{ name: 'EditPage', params: { id: homeId } }" -->
+                  <!-- :to="{ name: 'Home' }" -->
                   ویرایش
                 </router-link>
 
@@ -303,8 +305,8 @@ export default defineComponent({
   mounted() {
     fetch("https://localhost:5001/api/Home/" + this.id)
       .then((e) => e.json())
-      .then((data) => (this.homeData = data))
       .then((data) => {
+        this.homeData = data;
         this.homeId = data.id;
         this.statusCode = data.status;
       });
